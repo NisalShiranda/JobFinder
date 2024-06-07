@@ -8,9 +8,15 @@ import { Link } from "react-router-dom";
 import CustomButton from "./CustomButton";
 import { users } from "../utils/data";
 import { useSelector } from "react-redux";
+import { Logout } from "../redux/userSlice.js"
 
 function MenuList({ user, onClick }) {
-  const handleLogout = () => {};
+  const dispatch = useDispatch();
+  console.log(user);
+  const handleLogout = () => {
+    dispatch(Logout);
+    window.location.replace("/");
+  };
 
   return (
     <div>
@@ -99,6 +105,7 @@ function MenuList({ user, onClick }) {
 const Navbar = () => {
   const user = useSelector((state) => state.user);
   const [isOpen, setIsOpen] = useState(false);
+  console.log(user);
 
   const handleCloseNavbar = () => {
     setIsOpen((prev) => !prev);
